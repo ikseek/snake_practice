@@ -89,6 +89,13 @@ int move_snake(vector<Point> &snake, Point &point, char &direction,
   }
 }
 
+void draw_game_block(const vector<Point> &snake, Point& p) {
+  if (Find(snake, p, snake.size()))
+    cout << 'O';
+  else
+    cout << ' ';
+}
+
 void draw_game(const vector<Point> &snake) {
   int size = 15;
   int number_of_last_symbol = size - 1;
@@ -99,10 +106,7 @@ void draw_game(const vector<Point> &snake) {
         if ((i == 0) || (i == number_of_last_symbol))
           cout << '|';
         else {
-          if (Find(snake, p, snake.size()))
-            cout << 'O';
-          else
-            cout << ' ';
+          draw_game_block(snake, p);
         }
       }
     else
