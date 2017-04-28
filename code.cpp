@@ -15,7 +15,6 @@ struct Point {
 };
 
 bool Find(const vector<Point> &snake, Point &point, int n) {
-
   for (int k = 0; k < n; k++)
     // if (snake[k] == Point(i, number_of_last_symbol - j ))
     if (point == snake[k])
@@ -39,7 +38,6 @@ int move_snake(vector<Point> &snake, Point &point, char &direction,
     }
   } break;
   case 'a': {
-
     if ((point.y == snake[snake.size() - 2].y) &&
             (snake[snake.size() - 2].x > point.x) ||
         (point.y != snake[snake.size() - 2].y))
@@ -101,7 +99,6 @@ void draw_game(const vector<Point> &snake) {
         if ((i == 0) || (i == number_of_last_symbol))
           cout << '|';
         else {
-
           if (Find(snake, p, snake.size()))
             cout << 'O';
           else
