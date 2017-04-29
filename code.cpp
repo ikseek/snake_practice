@@ -22,8 +22,7 @@ bool Find(const vector<Point> &snake, Point &point, int n) {
   return false;
 }
 
-int move_snake(vector<Point> &snake, Point &point, char &direction,
-               char old_direction, bool &game_over) {
+bool check_buttons_or_move(const vector<Point> &snake, Point &point, char direction) {
   bool is_on_wrong_button = false;
   switch (direction) {
   case 'd': {
@@ -66,6 +65,12 @@ int move_snake(vector<Point> &snake, Point &point, char &direction,
     is_on_wrong_button = true;
   }
   }
+  return is_on_wrong_button;
+}
+
+int move_snake(vector<Point> &snake, Point &point, char &direction,
+               char old_direction, bool &game_over) {
+  bool is_on_wrong_button = check_buttons_or_move(snake, point, direction);
   if (is_on_wrong_button) {
     direction = old_direction;
     move_snake(snake, point, direction, old_direction, game_over);
