@@ -33,8 +33,6 @@ int move_snake(vector<Point> &snake, Point &point, char &direction,
       point.x += 1;
     else {
       is_on_wrong_button = true;
-      direction = old_direction;
-      move_snake(snake, point, direction, direction, game_over);
     }
   } break;
   case 'a': {
@@ -44,8 +42,6 @@ int move_snake(vector<Point> &snake, Point &point, char &direction,
       point.x -= 1;
     else {
       is_on_wrong_button = true;
-      direction = old_direction;
-      move_snake(snake, point, direction, old_direction, game_over);
     }
   } break;
   case 'w': {
@@ -55,8 +51,6 @@ int move_snake(vector<Point> &snake, Point &point, char &direction,
       point.y += 1;
     else {
       is_on_wrong_button = true;
-      direction = old_direction;
-      move_snake(snake, point, direction, old_direction, game_over);
     }
   } break;
   case 's': {
@@ -66,15 +60,15 @@ int move_snake(vector<Point> &snake, Point &point, char &direction,
       point.y -= 1;
     else {
       is_on_wrong_button = true;
-      direction = old_direction;
-      move_snake(snake, point, direction, old_direction, game_over);
     }
   } break;
   default: {
     is_on_wrong_button = true;
+  }
+  }
+  if (is_on_wrong_button) {
     direction = old_direction;
     move_snake(snake, point, direction, old_direction, game_over);
-  }
   }
   if (game_over)
     return 0;
