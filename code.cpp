@@ -45,7 +45,7 @@ void case_w(vector<Point> &snake, Point &point, char &direction,
       (point.x != snake[snake.size() - 2].x))
     point.y += 1;
   else
-    is_on_wroquantity_foodng_button = true;
+    is_on_wrong_button = true;
 }
 void case_s(vector<Point> &snake, Point &point, char &direction,
             char old_direction, bool &is_on_wrong_button, bool &game_over) {
@@ -145,6 +145,10 @@ void give_food(bool **food, size_t quantity_food, size_t size_food) {
   for (int i = 0; i < quantity_food; i++)
     food[rand() % size_food][rand() % size_food] = true;
 }
+resize_snack(vector<Point> &snake, int n) {
+  for (int i = 0; i < n; i++)
+    snake.erase(snake.begin());
+}
 int main() {
   size_t size_food = 15;
   size_t count = 0;
@@ -166,11 +170,16 @@ int main() {
   }
   Point point1 = snake.back();
   give_food(food, quantity_food, size_food);
+  int t = 1;
   while (true) {
     char old_direction = direction;
     draw_game(snake, food, quantity_food);
     if (quantity_food == 0)
       give_food(food, 5, size_food);
+    if (count == t * 10) {
+      t++;
+      resize_snack(snake, 10);
+    }
     Sleep(1000);
     system("cls");
     if (kbhit()) {
